@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: browse-hbo-max-scifi
+expected_outcome: |
+  Gives about 8-12 sci-fi movies currently on HBO Max in the US, each with year and a short hook, spot-checked as still available, with source and date.

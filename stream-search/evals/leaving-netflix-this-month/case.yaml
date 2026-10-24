@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: leaving-netflix-this-month
+expected_outcome: |
+  Lists titles leaving Netflix US in the current month with their last day to watch, ordered by date, notes if the list may be partial, and cites source and date.

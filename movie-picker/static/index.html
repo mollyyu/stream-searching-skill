@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movie Picker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-row">
+      <h1>Movie Picker</h1>
+      <div class="me" id="me" hidden>
+        <button type="button" class="ghost small" id="open-history">History</button>
+        <button type="button" class="me-chip" id="switch-profile" title="Switch profile">
+          <span class="avatar" id="me-icon"></span><span id="me-name"></span><span class="switch">Switch</span>
+        </button>
+      </div>
+    </div>
+    <ol class="steps" id="steps" aria-label="Progress">
+      <li data-step="services">Services</li>
+      <li data-step="genres">Genres</li>
+      <li data-step="quiz">This or that</li>
+      <li data-step="results">Picks</li>
+    </ol>
+  </header>
+
+  <main>
+    <section id="profiles" class="screen" hidden>
+      <h2>Who's watching?</h2>
+      <p class="hint">Pick your profile, or make a new one. No password needed.</p>
+      <div class="profiles" id="profile-list"></div>
+      <form id="new-profile" class="new-profile" hidden>
+        <label for="profile-name">Name</label>
+        <input id="profile-name" maxlength="30" autocomplete="off" required placeholder="e.g. Molly">
+        <span class="label">Icon</span>
+        <div class="icon-picker" id="icon-picker" role="group" aria-label="Icon"></div>
+        <p class="error" id="profile-error" hidden></p>
+        <div class="actions"><button class="primary" type="submit">Create profile</button></div>
+      </form>
+    </section>
+
+    <section id="history" class="screen" hidden>
+      <h2>Your history</h2>
+      <p class="hint">Past quizzes, your answers, and what we recommended.</p>
+      <div id="history-list" class="history-list"></div>
+      <div class="actions"><button class="primary" id="history-back">New quiz</button></div>
+    </section>
+
+    <section id="services" class="screen" hidden>
+      <h2>Which services do you have?</h2>
+      <p class="hint">Pick all that apply. We'll only recommend movies you can watch on them.</p>
+      <div class="chips" id="service-list" role="group" aria-label="Streaming services"></div>
+      <div class="actions"><button class="primary" id="services-next" disabled>Next</button></div>
+    </section>
+
+    <section id="genres" class="screen" hidden>
+      <h2>What are you in the mood for?</h2>
+      <p class="hint">Pick one or more genres, or skip to keep it open.</p>
+      <div class="chips" id="genre-list" role="group" aria-label="Genres"></div>
+      <label class="use-history" id="use-history-row" hidden>
+        <input type="checkbox" id="use-history" checked>
+        <span>Use what you've learned about me <span class="hint" id="past-count"></span></span>
+      </label>
+      <div class="actions">
+        <button class="ghost" data-back="services">Back</button>
+        <button class="primary" id="genres-next">Start</button>
+      </div>
+    </section>
+
+    <section id="quiz" class="screen" hidden>
+      <div class="quiz-head">
+        <h2>Which would you rather watch tonight?</h2>
+        <span id="round-label" class="hint"></span>
+      </div>
+      <div class="progress"><div id="progress-bar"></div></div>
+      <p class="hint learned-note" id="learned-note" hidden></p>
+      <div class="pair" id="pair"></div>
+      <div class="actions">
+        <button class="ghost" id="tie" title="Shortcut: ↑">Tie: like both</button>
+        <button class="ghost" id="skip" title="Shortcut: ↓">Neither / not sure</button>
+        <button class="ghost" id="finish" hidden>Show my picks now</button>
+      </div>
+    </section>
+
+    <section id="results" class="screen" hidden>
+      <h2>Your best matches</h2>
+      <p class="hint">Ranked by how well they fit your answers. All streaming on your services right now.</p>
+      <p class="taste" id="taste" hidden></p>
+      <p class="hint seen-note" id="seen-note" hidden>
+        Hiding <span id="seen-count"></span> you've already seen.
+        <button type="button" class="link" id="clear-seen">Clear list</button>
+      </p>
+      <div class="grid" id="result-list"></div>
+      <p class="hint more-end" id="more-end" hidden>That's every good match on your services. Try more genres or services for more.</p>
+      <div class="actions">
+        <button class="ghost" id="more" hidden>Show more</button>
+        <button class="primary" id="restart">Start over</button>
+      </div>
+    </section>
+
+    <div id="loading" class="loading" hidden><div class="spinner"></div><span>Finding movies…</span></div>
+    <p id="error" class="error" role="alert" hidden></p>
+  </main>
+
+  <footer>
+    This product uses the TMDB API but is not endorsed or certified by TMDB.
+    Streaming availability data by JustWatch.
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
